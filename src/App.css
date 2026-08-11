@@ -1,7 +1,8 @@
 .playerStats{
   display: block;
   text-align: center;
-  margin-left: 10px;
+  margin-left: 500px;
+  padding: 20px;
   border: black 3px solid;
   border-radius: 10px;
   width: 500px;
