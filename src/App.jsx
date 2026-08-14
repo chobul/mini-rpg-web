@@ -38,7 +38,13 @@ function App() {
   const [currentEnemy, SetCurrentEnemy] = useState(enemy)
 
   function findEnemy() {
-     
+    const randomIndex = Math.floor(Math.random() * enemy.length)
+    const randomEnemy = enemy[randomIndex]
+
+    
+
+    console.log(randomIndex)
+    console.log(randomEnemy)
   }
 
   return (
@@ -50,7 +56,7 @@ function App() {
       <h3>ATK:&nbsp;{player.attack}</h3>
       <h3>DEF:&nbsp;{player.defense}</h3>
       <h3>Gold:&nbsp;{player.gold}</h3>
-      <button>Find Enemy!</button>
+      <button onClick={findEnemy}>Find Enemy!</button>
     </div>
     <div className='EnemyStats'>
       <h1>Enemy</h1>
