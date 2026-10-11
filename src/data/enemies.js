@@ -1,0 +1,95 @@
+export const enemies = [
+  {
+    name: 'ไก่ย่างจอมโหด',
+    baseHp: 55,
+    baseAtk: 7,
+    baseDef: 3,
+    skills: [
+      { name: 'ปีกพิฆาต', description: 'สะบัดปีกจนควันหอมฟุ้งไปทั้งสนาม', damageMultiplier: 1.4 },
+      { name: 'น้ำจิ้มแสบลิ้น', description: 'สาดน้ำจิ้มสูตรเผ็ดจนตาแทบเห็นอนาคต', damageMultiplier: 1.7 },
+    ],
+    expReward: 18,
+    goldReward: 12,
+  },
+  {
+    name: 'ป้าขายส้มตำนักเลง',
+    baseHp: 72,
+    baseAtk: 8,
+    baseDef: 5,
+    skills: [
+      { name: 'ครกสะเทือนยุทธภพ', description: 'ตำพริกหนึ่งที แรงสั่นสะเทือนไปถึงปากซอย', damageMultiplier: 1.6 },
+      { name: 'มะละกอสับรัว', description: 'สับมะละกอเร็วเสียจนมีดขอพักร้อน', damageMultiplier: 1.3 },
+    ],
+    expReward: 25,
+    goldReward: 20,
+  },
+  {
+    name: 'มอเตอร์ไซค์ผีสิง',
+    baseHp: 62,
+    baseAtk: 10,
+    baseDef: 3,
+    skills: [
+      { name: 'บิดทะลุมิติ', description: 'เร่งเครื่องผ่านมิติที่ไม่มีใครขอให้ผ่าน', damageMultiplier: 1.7 },
+    ],
+    expReward: 24,
+    goldReward: 16,
+  },
+  {
+    name: 'แมวส้มอัปลักษณ์ที่คิดว่าตัวเองเป็นเจ้านาย',
+    baseHp: 80,
+    baseAtk: 9,
+    baseDef: 6,
+    skills: [
+      { name: 'ตบสั่งสอนทาส', description: 'ตบหนึ่งทีเพื่อย้ำว่าใครเป็นเจ้าของโซฟา', damageMultiplier: 1.5 },
+      { name: 'จ้องจนมนุษย์ยอมแพ้', description: 'จ้องเขม็งจนคู่ต่อสู้รู้สึกผิดที่ยังไม่เทอาหาร', damageMultiplier: 1.4 },
+    ],
+    expReward: 30,
+    goldReward: 18,
+  },
+  {
+    name: 'หมูกระทะผู้ไม่แบ่งหมู',
+    baseHp: 90,
+    baseAtk: 8,
+    baseDef: 7,
+    skills: [
+      { name: 'คีบหมูตัดกำลัง', description: 'คีบหมูชิ้นสุดท้ายต่อหน้าต่อตาอย่างไร้ความปรานี', damageMultiplier: 1.5 },
+    ],
+    expReward: 32,
+    goldReward: 22,
+  },
+  {
+    name: 'มนุษย์ป้ารถเข็นสายฟ้า',
+    baseHp: 68,
+    baseAtk: 11,
+    baseDef: 4,
+    skills: [
+      { name: 'เข็นรถดริฟต์', description: 'เลี้ยวรถเข็นหนึ่งทีจนแรงลมพัดใบเสร็จปลิว', damageMultiplier: 1.6 },
+      { name: 'ทอนเงินเป็นเหรียญ', description: 'โปรยเหรียญทอนแม่นยำระดับนักปาเหรียญโอลิมปิก', damageMultiplier: 1.3 },
+    ],
+    expReward: 27,
+    goldReward: 25,
+  },
+  {
+    name: 'เป็ดขี้บ่นประจำคลอง',
+    baseHp: 58,
+    baseAtk: 7,
+    baseDef: 5,
+    skills: [
+      { name: 'ก้าบก้องนภา', description: 'ก้าบเสียงดังจนปลาทั้งคลองขอลดเสียง', damageMultiplier: 1.5 },
+    ],
+    expReward: 20,
+    goldReward: 14,
+  },
+  {
+    name: 'ตู้เย็นหิวดึก',
+    baseHp: 100,
+    baseAtk: 9,
+    baseDef: 8,
+    skills: [
+      { name: 'หนีบประตูใส่มือ', description: 'ปิดประตูใส่มือคนที่มาเปิดรอบที่ห้า', damageMultiplier: 1.4 },
+      { name: 'แสงไฟล่อใจ', description: 'เปิดไฟในตู้เย็นล่อให้ลืมว่ามาหาอะไร', damageMultiplier: 1.6 },
+    ],
+    expReward: 36,
+    goldReward: 28,
+  },
+]

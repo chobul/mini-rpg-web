@@ -1,72 +1,81 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import BattleLog from './components/BattleLog.jsx'
+import EnemyCard from './components/EnemyCard.jsx'
+import PlayerCard from './components/PlayerCard.jsx'
+import Shop from './components/Shop.jsx'
+import { initialInventory } from './data/items.js'
+import { useBattle } from './hooks/useBattle.js'
 
-const player = {
-  name : "lilBro",
-  hp : 100,
-  attack : 5,
-  defense : 5,
-  level : 1,
-  gold : 100
+const defaultPlayer = {
+  name: 'lilBro',
+  maxHp: 100,
+  hp: 100,
+  maxMp: 30,
+  mp: 30,
+  attack: 5,
+  defense: 5,
+  level: 1,
+  exp: 0,
+  gold: 100,
+  inventory: initialInventory,
 }
 
-const enemy = [
-  {
-    name: "Goblin",
-    hp: 50,
-    attack: 3,
-    defense: 2,
-    level: 1
-  },
-  {
-    name: "Slime",
-    hp: 30,
-    attack: 2,
-    defense: 1,
-    level: 1
-  },
-  {
-    name: "Skeleton",
-    hp: 70,
-    attack: 5,
-    defense: 4,
-    level: 2
+const playerStorageKey = 'mini-rpg-player'
+
+function loadSavedPlayer() {
+  try {
+    const savedPlayer = localStorage.getItem(playerStorageKey)
+    if (!savedPlayer) return defaultPlayer
+
+    const parsedPlayer = JSON.parse(savedPlayer)
+    return {
+      ...defaultPlayer,
+      ...parsedPlayer,
+      inventory: {
+        ...initialInventory,
+        ...parsedPlayer.inventory,
+      },
+    }
+  } catch (error) {
+    console.error('โหลดข้อมูลผู้เล่นจาก localStorage ไม่สำเร็จ', error)
+    return defaultPlayer
   }
-]
+}
 
 function App() {
-  const [currentEnemy, SetCurrentEnemy] = useState(enemy)
+  const [initialPlayer] = useState(loadSavedPlayer)
+  const { state, startBattle, attack, defend, useSkill, useItem, flee, buyItem } = useBattle(initialPlayer)
+  const { player, enemy, phase, log, damagePopups } = state
 
-  function findEnemy() {
-    const randomIndex = Math.floor(Math.random() * enemy.length)
-    const randomEnemy = enemy[randomIndex]
-
-    
-
-    console.log(randomIndex)
-    console.log(randomEnemy)
-  }
+  useEffect(() => {
+    try {
+      localStorage.setItem(playerStorageKey, JSON.stringify(player))
+    } catch (error) {
+      console.error('บันทึกข้อมูลผู้เล่นลง localStorage ไม่สำเร็จ', error)
+    }
+  }, [player])
 
   return (
-    <>
-    <div className='playerStats'>
-      <h2>Name:&nbsp;{currentEnemy.name}</h2>
-      <h3>Level:&nbsp;{player.level}</h3>
-      <h3>HP:&nbsp;{player.hp}</h3>
-      <h3>ATK:&nbsp;{player.attack}</h3>
-      <h3>DEF:&nbsp;{player.defense}</h3>
-      <h3>Gold:&nbsp;{player.gold}</h3>
-      <button onClick={findEnemy}>Find Enemy!</button>
-    </div>
-    <div className='EnemyStats'>
-      <h1>Enemy</h1>
-      <h2>Name:&nbsp;{enemy.name}</h2>
-      <h3>Level:&nbsp;{enemy.level}</h3>
-      <h3>HP:&nbsp;{enemy.hp}</h3>
-      <h3>ATK:&nbsp;{enemy.attack}</h3>
-      <h3>DEF:&nbsp;{enemy.defense}</h3>
-    </div>
-    </>
+    <main className="game">
+      <h1 className="gameTitle">Mini RPG: ภารกิจตามหาของกิน</h1>
+      <div className="gamePanels">
+        <PlayerCard
+          player={player}
+          phase={phase}
+          damagePopup={damagePopups.player}
+          onStartBattle={startBattle}
+          onAttack={attack}
+          onDefend={defend}
+          onSkill={useSkill}
+          onItem={useItem}
+          onFlee={flee}
+        />
+        <EnemyCard enemy={enemy} damagePopup={damagePopups.enemy} />
+      </div>
+      <Shop player={player} phase={phase} onBuy={buyItem} />
+      <BattleLog entries={log} />
+    </main>
   )
 }
 
